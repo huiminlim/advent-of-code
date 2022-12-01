@@ -1,0 +1,7 @@
+name: aoc
+dependencies:
+  - python=3.10
+  - pip
+  - autopep8
+  # - pip:
+  #     - pyxel
