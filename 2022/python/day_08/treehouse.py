@@ -6,7 +6,7 @@ ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 grid = []
 with open(f"{ROOT_DIR}/data.txt", "r") as f:
     for line in f:
-        grid.append([x for x in line.strip()])
+        grid.append([int(x) for x in line.strip()])
 
 nrow = len(grid)
 ncol = len(grid[0])
@@ -44,3 +44,60 @@ for y in range(nrow):
     # print()
 
 print(total_visible)
+
+# Puzzle 2
+# stop if you reach an edge or at the first tree
+# that is the same height or taller than the tree under consideration
+max_score = 0
+for y in range(nrow):
+    for x in range(ncol):
+
+        l = 0
+        r = 0
+        u = 0
+        d = 0
+
+        height = grid[y][x]
+
+        left_slice = list(reversed(grid[y][:x]))
+        right_slice = grid[y][x + 1:]
+        bottom_slice = [row[x] for row in grid][y + 1:]
+        up_slice = list(reversed([row[x] for row in grid][:y]))
+
+        for tree in left_slice:
+            if tree < height:
+                l += 1
+            elif tree >= height:
+                l += 1
+                break
+
+        for tree in right_slice:
+            if tree < height:
+                r += 1
+            elif tree >= height:
+                r += 1
+                break
+
+        for tree in up_slice:
+            if tree < height:
+                u += 1
+            elif tree >= height:
+                u += 1
+                break
+
+        for tree in bottom_slice:
+            if tree < height:
+                d += 1
+            elif tree >= height:
+                d += 1
+                break
+
+        score = l * r * u * d
+
+        if score > max_score:
+            max_score = score
+
+    #     print(left_slice, right_slice, up_slice, bottom_slice, height, ",", l, r, u, d, ",", score)
+    # print()
+
+print(max_score)
