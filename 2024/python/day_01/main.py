@@ -12,6 +12,25 @@ with open(f"{ROOT_DIR}/data.txt", "r") as f:
     for line in f:
         calibration.append(line.strip())
 
+
+tokens = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+tokens2 = ["z0o", "o1e", "t2o", "t3e", "f4r", "f5e", "s6x", "s7n", "e8t", "n9e"]
+
+# print(calibration)
+for i in range(len(calibration)):
+    line = calibration[i]
+    for ci in range(len(line)):
+        substr = line[ci:]
+        for ti in range(len(tokens)):
+            replacement = ""
+            token = tokens[ti]
+            if substr.startswith(token):
+                replacement = f"{tokens2[ti]}"
+            if replacement != "":
+                calibration[i] = calibration[i].replace(token, replacement)
+                break
+# print(calibration)
+
 val = 0
 for line in calibration:
     try:
@@ -27,5 +46,3 @@ for line in calibration:
         pass
 
 print(val)
-
-tokens = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
