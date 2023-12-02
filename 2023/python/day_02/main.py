@@ -47,3 +47,17 @@ for game_id, infos in game_info.items():
     if not game_not_possible:
         total_val += game_id
 print(total_val)
+
+# Attempt to solve part 2
+total_val = 0
+for game_id, infos in game_info.items():
+    prev_cube_count = {"red": 0, "blue": 0, "green": 0}
+    for info in infos:
+        for cube_color, count in info.items():
+            if count > prev_cube_count[cube_color]:
+                prev_cube_count[cube_color] = count
+    power = 1
+    for count in prev_cube_count.values():
+        power *= count
+    total_val += power
+print(total_val)
