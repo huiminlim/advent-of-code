@@ -1,4 +1,4 @@
-# AoC 2024 Day 1
+# AoC 2023 Day 1
 
 ## Part 1
 
