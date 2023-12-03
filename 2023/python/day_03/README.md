@@ -31,4 +31,4 @@ I checked the following values if applicable:
 
 ## Part 2
 
-This was similar to part 1.
+This was similar to part 1, but I multiplied them instead after finding the numbers to derive the gear ratio.
