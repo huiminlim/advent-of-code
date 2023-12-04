@@ -43,7 +43,8 @@ for line in store:
                 count += 1
         if count > 0:
             for idx in range(card_id+1, card_id+count+1):
-                cards[idx] += 1
+                if idx <= total_num_cards:
+                    cards[idx] += 1
     # print(cards)
     card_id += 1
 
