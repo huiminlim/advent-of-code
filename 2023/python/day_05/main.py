@@ -1,4 +1,5 @@
 import os
+import sys
 
 # Set directory path of current code folder
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -173,4 +174,16 @@ loc = []
 for seed in seeds_to_plant:
     loc.append(humid_to_loc(temp_to_humid(light_to_temp(water_to_light(fertilizer_to_water(soil_to_fertilizer(seed_to_soil(seed))))))))
 loc.sort()
-print(loc[0])
+# print(loc[0])
+
+# Part 2
+lowest = sys.maxsize
+for idx in range(0, len(seeds_to_plant), 2):
+    seed_start = seeds_to_plant[idx]
+    num = seeds_to_plant[idx+1]
+    # print(seed_start, num)
+    for seed in range(seed_start, seed_start+num):
+        print(idx, len(seeds_to_plant), seed, seed_start+num)
+        val = humid_to_loc(temp_to_humid(light_to_temp(water_to_light(fertilizer_to_water(soil_to_fertilizer(seed_to_soil(seed)))))))
+        lowest = val if val < lowest else lowest
+print(lowest)
